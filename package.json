@@ -1,6 +1,9 @@
 {
   "name": "assortment-backend",
   "version": "1.0.0",
+  "prisma": {
+    "schema": "src/database/schema.prisma"
+  },
   "scripts": {
     "start": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,6 +13,7 @@
     "express": "^4.18.2"
   },
   "devDependencies": {
+    "@prisma/client": "^4.8.0",
     "@types/node": "^18.11.17",
     "dotenv": "^16.0.3",
     "joi": "^17.7.0",
