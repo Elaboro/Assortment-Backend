@@ -1,6 +1,12 @@
+import { User } from "./User";
 
 export type UserCreateDto = {
-  name: string;
-  password1: string;
-  password2: string;
+  name: User["name"];
+  password: User["password"];
+  password_repeat: User["password"];
+};
+
+export type UserLoginDto = {
+  name: User["name"];
+  password: User["password"];
 };

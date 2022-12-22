@@ -12,30 +12,54 @@ datasource db {
 
 model User {
   id       String @id @default(uuid())
-  name     String
+  name     String @unique
   password String
 }
 
 model Assortment {
-  id               String     @id @default(uuid())
-  name             String
-  description      String
-  size_conditional Float
-  price            Float
-  category         Category[]
-  image            Image[]
+  id          String                 @id @default(uuid())
+  name        String
+  description String?
+  size        Float?
+  price       Float?
+  category    CategoryOnAssortment[]
+  image       Image[]
+  unit        UnitOnAssortment[]
 }
 
 model Category {
-  id            String      @id @default(uuid())
-  size_type     Int
-  assortment    Assortment? @relation(fields: [assortment_id], references: [id])
-  assortment_id String?
+  id         String                 @id @default(uuid())
+  name       String
+  assortment CategoryOnAssortment[]
+}
+
+model CategoryOnAssortment {
+  assortment    Assortment @relation(fields: [assortment_id], references: [id])
+  assortment_id String
+  category      Category   @relation(fields: [category_id], references: [id])
+  category_id   String
+
+  @@id([assortment_id, category_id])
 }
 
 model Image {
-  id            String      @id @default(uuid())
+  id            String     @id @default(uuid())
   name          String
-  assortment    Assortment? @relation(fields: [assortment_id], references: [id])
-  assortment_id String?
+  assortment    Assortment @relation(fields: [assortment_id], references: [id])
+  assortment_id String
+}
+
+model Unit {
+  id        String             @id @default(uuid())
+  name      String
+  assortmen UnitOnAssortment[]
+}
+
+model UnitOnAssortment {
+  assortment    Assortment @relation(fields: [assortment_id], references: [id])
+  assortment_id String
+  unit          Unit       @relation(fields: [unit_id], references: [id])
+  unit_id       String
+
+  @@id([assortment_id, unit_id])
 }

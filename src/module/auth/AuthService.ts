@@ -1,10 +1,14 @@
+import {
+  UserCreateDto,
+  UserLoginDto,
+} from "../user/UserDto";
 
 export class AuthService {
-  async register(): Promise<string> {
+  async register(dto: UserCreateDto): Promise<string> {
     return "token";
   }
 
-  async login(): Promise<string> {
+  async login(dto: UserLoginDto): Promise<string> {
     return "token";
   }
 }

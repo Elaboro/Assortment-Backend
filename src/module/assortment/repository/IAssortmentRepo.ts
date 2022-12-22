@@ -1,11 +1,11 @@
 import {
-  AssortmentCreateItemDto,
-  AssortmentUpdateItemDto,
+  AssortmentCreateDto,
+  AssortmentUpdateDto,
 } from "../AssortmentDto";
-import { AssortmentItem } from "../AssortmentItem";
+import { Assortment } from "../Type";
 
 export interface IAssortmentRepo {
-  getAssortment: () => Promise<AssortmentItem[]>;
-  createItem: (item: AssortmentCreateItemDto) => Promise<AssortmentItem>;
-  updateItem: (item: AssortmentUpdateItemDto) => Promise<AssortmentItem>;
+  getList: () => Promise<Assortment[]>;
+  create: (dto: AssortmentCreateDto) => Promise<Assortment>;
+  update: (dto: AssortmentUpdateDto) => Promise<Assortment>;
 }
