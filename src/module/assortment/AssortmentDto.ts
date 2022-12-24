@@ -9,7 +9,7 @@ export type AssortmentCreateDto = {
   description?: Assortment["description"];
   size?: Assortment["size"];
   price?: Assortment["price"];
-  category?: Assortment["category"];
+  category?: Array<CategoryCreateDto["name"]>;
   image?: Assortment["image"];
 };
 

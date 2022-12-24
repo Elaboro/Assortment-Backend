@@ -5,6 +5,6 @@ import {
 import { Unit } from "../Type";
 
 export interface IUnitRepo {
-  create: (dto: UnitCreateDto) => Promise<Unit>;
-  update: (dto: UnitUpdateDto) => Promise<Unit>;
+  create(dto: UnitCreateDto): Promise<Unit>;
+  update(dto: UnitUpdateDto): Promise<Unit>;
 }
