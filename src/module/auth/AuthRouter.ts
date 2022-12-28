@@ -20,10 +20,19 @@ router.post(
   asyncHandler(async (req: Request, res: Response) => {
     const dto = validateUserCreateDto(req);
 
-    const token: string = await authService.register(dto);
+    const {
+      tokenAccess,
+      tokenRefresh,
+    } = await authService.register(dto);
+
+    res.cookie("api_token", tokenRefresh, {
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 60,
+      signed: true
+    });
 
     res.status(HttpStatus.CREATED)
-    .json({token});
+    .json({tokenAccess});
   })
 );
 
@@ -32,10 +41,19 @@ router.post(
   asyncHandler(async (req: Request, res: Response) => {
     const dto = validateUserLoginDto(req);
 
-    const token: string = await authService.login(dto);
+    const {
+      tokenAccess,
+      tokenRefresh,
+    } = await authService.login(dto);
+
+    res.cookie("api_token", tokenRefresh, {
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 60,
+      signed: true
+    });
 
     res.status(HttpStatus.OK)
-    .json({token});
+    .json({tokenAccess});
   })
 );
 
