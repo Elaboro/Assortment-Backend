@@ -2,6 +2,7 @@ import express,
 {
   Express,
 } from "express";
+import cookieParser from "cookie-parser";
 import { cfg } from "../config/environment";
 import { errorHandler } from "./lib/error/middlewareErrorHandler";
 import { errorValidation } from "./lib/error/middlewareErrorValidation";
@@ -14,6 +15,7 @@ const main = async () => {
   const app: Express = express();
 
   app.use(express.json(), middlewareExpressJson);
+  app.use(cookieParser(cfg.app.JWT_SECRET_KEY));
 
   app.use(authRouter);
   app.use(assortmentRouter);

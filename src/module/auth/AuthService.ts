@@ -10,6 +10,7 @@ import {
   ForbiddenError,
   NotFoundError,
 } from "../../lib/error/Error";
+import { UserRepo } from "../user/repository/UserRepo";
 
 type ReturnToken = {
   tokenAccess: string;

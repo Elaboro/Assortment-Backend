@@ -10,9 +10,9 @@ export const validateUserCreateDto = (req: Request): UserCreateDto => {
 
   const schema = Joi.object<UserCreateDto>({
     name: Joi.string().required(),
-    password: Joi.string().required(),
-    password_repeat: Joi.string().required(),
-  }).unknown(false);
+    password: Joi.string().min(8).max(40).required(),
+    password_repeat: Joi.ref("password"),
+  }).with("password", "password_repeat").unknown(false);
 
   const dto = Joi.attempt(body, schema) as UserCreateDto;
 
@@ -24,7 +24,7 @@ export const validateUserLoginDto = (req: Request): UserLoginDto => {
 
   const schema = Joi.object<UserLoginDto>({
     name: Joi.string().required(),
-    password: Joi.string().required(),
+    password: Joi.string().min(8).max(40).required(),
   }).unknown(false);
 
   const dto = Joi.attempt(body, schema) as UserLoginDto;
