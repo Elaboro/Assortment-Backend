@@ -5,6 +5,7 @@ import {
 } from "express";
 import { HttpStatus } from "../../lib/enum/HttpStatus";
 import { asyncHandler } from "../../lib/error/AsyncHandler";
+import AuthOnlyGuard from "../../lib/guard/AuthGuard";
 import { AssortmentService } from "./AssortmentService";
 import {
   validateAssortmentCreateDto,
@@ -31,6 +32,7 @@ router.get(
 
 router.post(
   "/assortment/create",
+  AuthOnlyGuard,
   asyncHandler(async (req: Request, res: Response) => {
     const dto = validateAssortmentCreateDto(req);
 
@@ -43,6 +45,7 @@ router.post(
 
 router.post(
   "/assortment/update",
+  AuthOnlyGuard,
   asyncHandler(async (req: Request, res: Response) => {
     const dto = validateAssortmentUpdateDto(req);
 
@@ -55,6 +58,7 @@ router.post(
 
 router.post(
   "/category/create",
+  AuthOnlyGuard,
   asyncHandler(async (req: Request, res: Response) => {
     const dto = validateCategoryCreateDto(req);
 
@@ -67,6 +71,7 @@ router.post(
 
 router.post(
   "/category/update",
+  AuthOnlyGuard,
   asyncHandler(async (req: Request, res: Response) => {
     const dto = validateCategoryUpdateDto(req);
 
@@ -79,6 +84,7 @@ router.post(
 
 router.post(
   "/unit/create",
+  AuthOnlyGuard,
   asyncHandler(async (req: Request, res: Response) => {
     const dto = validateUnitCreateDto(req);
 
@@ -91,6 +97,7 @@ router.post(
 
 router.post(
   "/unit/update",
+  AuthOnlyGuard,
   asyncHandler(async (req: Request, res: Response) => {
     const dto = validateUnitUpdateDto(req);
 
