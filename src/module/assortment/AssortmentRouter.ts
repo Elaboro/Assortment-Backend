@@ -15,6 +15,7 @@ import {
   validateUnitCreateDto,
   validateUnitUpdateDto,
 } from "./AssortmentValidator";
+import { FileLoaderHandler } from "./middleware/FileLoaderHandler";
 
 const assortmentService = new AssortmentService();
 
@@ -33,6 +34,7 @@ router.get(
 router.post(
   "/assortment/create",
   AuthOnlyGuard,
+  FileLoaderHandler.array("file"),
   asyncHandler(async (req: Request, res: Response) => {
     const dto = validateAssortmentCreateDto(req);
 
@@ -46,6 +48,7 @@ router.post(
 router.post(
   "/assortment/update",
   AuthOnlyGuard,
+  FileLoaderHandler.array("file"),
   asyncHandler(async (req: Request, res: Response) => {
     const dto = validateAssortmentUpdateDto(req);
 
