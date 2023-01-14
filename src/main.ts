@@ -2,6 +2,7 @@ import express,
 {
   Express,
 } from "express";
+import cors from "cors";
 import cookieParser from "cookie-parser";
 import { cfg } from "../config/environment";
 import { errorHandler } from "./lib/error/middlewareErrorHandler";
@@ -14,6 +15,7 @@ const main = async () => {
   const PORT = cfg.app.PORT;
   const app: Express = express();
 
+  app.use(cors());
   app.use(express.json(), middlewareExpressJson);
   app.use(cookieParser(cfg.app.JWT_SECRET_KEY));
 
