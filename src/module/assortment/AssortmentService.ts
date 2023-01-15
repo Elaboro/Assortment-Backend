@@ -12,6 +12,7 @@ import { UnitRepo } from "./repository/UnitRepo";
 import {
   Assortment,
   Category,
+  CategoryWithAssortment,
   Unit,
 } from "./Type";
 
@@ -38,6 +39,22 @@ export class AssortmentService {
 
   async updateCategory(dto: CategoryUpdateDto): Promise<Category>{
     return this.categoryRepo.update(dto);
+  }
+
+  async getCategoryList(): Promise<Category[]> {
+    return this.categoryRepo.getList();
+  }
+
+  async getCategoryListWithAssortment(): Promise<CategoryWithAssortment[]> {
+    const list =  await this.categoryRepo.getListWithAssortment();
+    const result = list.map((category) => {
+      return {
+        ...category,
+        assortment: category.assortment.map((assortment) => assortment.assortment)
+      }
+    });
+
+    return result;
   }
 
   async createUnit(dto: UnitCreateDto): Promise<Unit> {

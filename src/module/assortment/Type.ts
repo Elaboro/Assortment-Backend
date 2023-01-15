@@ -15,6 +15,12 @@ export type Category = {
   name: string;
 };
 
+export type CategoryWithAssortment = {
+  id: string;
+  name: string;
+  assortment: Assortment[];
+};
+
 export type Image = {
   id: string;
   name: string;

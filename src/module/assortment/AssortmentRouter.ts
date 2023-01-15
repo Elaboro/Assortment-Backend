@@ -27,7 +27,7 @@ router.get(
     const list = await assortmentService.getAssortmentList();
 
     res.status(HttpStatus.OK)
-    .json({list});
+    .json(list);
   })
 );
 
@@ -41,7 +41,7 @@ router.post(
     const item = await assortmentService.createAssortment(dto);
 
     res.status(HttpStatus.CREATED)
-    .json({item});
+    .json(item);
   })
 );
 
@@ -55,7 +55,7 @@ router.post(
     const item = await assortmentService.updateAssortment(dto);
 
     res.status(HttpStatus.OK)
-    .json({item});
+    .json(item);
   })
 );
 
@@ -68,7 +68,7 @@ router.post(
     const item = await assortmentService.createCategory(dto);
 
     res.status(HttpStatus.CREATED)
-    .json({item});
+    .json(item);
   })
 );
 
@@ -81,7 +81,27 @@ router.post(
     const item = await assortmentService.updateCategory(dto);
 
     res.status(HttpStatus.OK)
-    .json({item});
+    .json(item);
+  })
+);
+
+router.get(
+  "/category/list",
+  asyncHandler(async (req: Request, res: Response) => {
+    const list = await assortmentService.getCategoryList();
+
+    res.status(HttpStatus.OK)
+    .json(list);
+  })
+);
+
+router.get(
+  "/category/list/with_assortment",
+  asyncHandler(async (req: Request, res: Response) => {
+    const list = await assortmentService.getCategoryListWithAssortment();
+
+    res.status(HttpStatus.OK)
+    .json(list);
   })
 );
 
@@ -94,7 +114,7 @@ router.post(
     const item = await assortmentService.createUnit(dto);
 
     res.status(HttpStatus.CREATED)
-    .json({item});
+    .json(item);
   })
 );
 
@@ -107,7 +127,7 @@ router.post(
     const item = await assortmentService.updateUnit(dto);
 
     res.status(HttpStatus.OK)
-    .json({item});
+    .json(item);
   })
 );
 
